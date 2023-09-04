@@ -1,0 +1,61 @@
+inicio --> split(y){4 : base | 65 : superior}
+base --> T(0, 0, 6.8){S(16, 4, 37){split(z){10 : I(rect) | ~1 : fachadaPrincipal | 12 : I(rect)}}}
+fachadaPrincipal --> split(y){~1 : puertas | 1 : puertas}
+puertas --> repeatN(z, 4){marcoPuerta}
+marcoPuerta --> split(z){~1 : I(rect) | 2 : puertaCorecta | ~1 : I(rect) }
+puertaCorecta --> split(x){0.2 : puertaRotada | ~1 : I(rect)}
+puertaRotada --> R(x, -pi/2){R(z, pi/2){puertaEscalda}}
+puertaEscalda --> S(0.2, 1, 2){I(door)}
+superior --> split(x){18 : bloqueFrontal}
+bloqueFrontal --> split(z){12 : alaIzquierda | 24 : torreCentral | 12 : alaDerecha}
+torreCentral --> split(x){3.5 : nil | ~1 : centralDelante | 5 : nil}
+centralDelante --> split(z){~0.8 : lateralIzq | ~1.8 : central | ~0.8 : lateralDer}
+lateralIzq --> T(0, 0, 3.2){split(y){46 : lateralIzqInfe | ~1 : nil}}
+lateralIzqInfe --> split(z){ 1 : lateralIzqIzq | ~1 : lateralIzqDer}
+lateralIzqIzq --> split(x){1 : nil | ~1 : salienLateralIzqCentro | 5.8 : nil}
+salienLateralIzqCentro --> split(y){~1 : salienLateralIzqCentroVent | 3 : nil}
+salienLateralIzqCentroVent --> split(x){0.5 : I(rect) | ~1 : repeatN(y, 40){I(window3)} | 0.5 : I(rect)}
+lateralIzqDer --> split(x){~1 : lateraIzqDerVenta | 2.3 : nil}
+lateraIzqDerVenta --> split(z){0.8 : I(rect) | ~1 : repeatN(y, 30){I(window3)} | 0.3 : I(rect) | ~1 : repeatN(y, 30){I(window3)} | 0.3 : I(rect) | ~1 : repeatN(y, 30){I(window3)} | 0.8 : I(rect)}
+central --> split(x){2 : nil | ~1 : centroCentral | 3 : nil}
+centroCentral --> split(y){~1 : centralTotal | 1.2 : azotea}
+centralTotal --> split(z){1.5 : centralTotalAlaIzq | ~1 : centralTotalVentanas | 1.5 : centralTotalAlaDer}
+centralTotalVentanas --> split(z){1.8 : I(rect) | ~1 : repeatN(y, 40){I(window3)} | 0.3 : I(rect) | ~1 : repeatN(y, 40){I(window3)} | 0.3 : I(rect) | ~1 : repeatN(y, 40){I(window3)} | 0.3 : I(rect) | ~1 : repeatN(y, 40){I(window3)} | 1.8 : I(rect)}
+centralTotalAlaIzq --> split(x){0.8 : nil | ~1 : centralTotalAlaIzqCentro | 0.8 : nil}
+centralTotalAlaIzqCentro --> split(y){~1 : I(rect) | 2 : nil}
+centralTotalAlaDer --> split(x){0.8 : nil | ~1 : centralTotalAlaDerCentro | 0.8 : nil}
+centralTotalAlaDerCentro --> split(y){~1 : I(rect) | 2 : nil}
+azotea --> split(z){2.3 : nil | ~1 : azoteaCentral | 2.7 : nil}
+azoteaCentral --> split(x){0.8 : nil | ~1 : I(rect) | 0.8 : nil}
+lateralDer --> T(0, 0, -3.2){split(y){46 : lateralDerInfe | ~1 : nil}}
+lateralDerInfe --> split(z){ ~1 : lateralDerIzq | 1 : lateralDerDer}
+lateralDerDer --> split(x){1 : nil | ~1 : salienLateralDerCentro | 1 : nil}
+salienLateralDerCentro --> split(y){~1 : I(rect) | 3 : nil}
+lateralDerIzq --> split(z){0.8 : I(rect) | ~1 : repeatN(y, 30){I(window3)} | 0.3 : I(rect) | ~1 : repeatN(y, 30){I(window3)} | 0.3 : I(rect) | ~1 : repeatN(y, 30){I(window3)} | 0.3 : I(rect) | ~1 : repeatN(y, 30){I(window3)} | 0.8 : I(rect)}
+alaIzquierda --> T(0, 0, 4.8){split(y){28 : alaIzqInfe | ~1 : nil}}
+alaIzqInfe --> split(x){~1 : alaIzqInfeFron | 8 : nil}
+alaIzqInfeFron --> split(z){4 : alaIzqIzq | ~1 : alaIzqDer}
+alaIzqDer --> split(z){2 : salienteCircular | ~1 : alaIzqDerDer}
+salienteCircular --> split(x){3 : nil | ~1 : split(y){25 : I(rect) | ~1 : nil} | 3 : nil}
+alaIzqDerDer --> split(x){ 2 : alaIzqSalienteDela | ~1 : alaIzqCentral | 2 : alaIzqSalientePost}
+alaIzqSalienteDela --> split(y){25 : ventanas | ~1 : nil}
+ventanas --> split(z){0.8 : I(rect) | ~1 : repeatN(y, 30){I(window3)} | 0.3 : I(rect) | ~1 : repeatN(y, 30){I(window3)} | 0.3 : I(rect) | ~1 : repeatN(y, 30){I(window3)} | 0.3 : I(rect) | ~1 : repeatN(y, 30){I(window3)} | 0.8 : I(rect)}
+alaIzqSalientePost --> split(y){25 : I(rect) | ~1 : nil}
+alaIzqCentral --> split(y){28 : I(rect) | ~1 : nil}
+alaIzqIzq --> T(0, 0, 2){split(x){2 : nil | ~1 : alaIzqIzqFron | 2 : nil}}
+alaIzqIzqFron --> split(y){20 : alaIzqIzqFronVentana | ~1 : nil}
+alaIzqIzqFronVentana --> split(z){1 : I(rect) | ~1 : repeatN(y, 16){I(window3)} | 1 : I(rect)}
+alaDerecha --> T(0, 0, -4.2){split(x){6 : alaDerFrontal | ~1 : nil | 8 : alaDerAtras}}
+alaDerFrontal --> split(z){8 : alaDerIzq | 4 : alaDerDer}
+alaDerIzq --> split(x){2 : alaDerSaliente | ~1 : alaDerPosterior}
+alaDerSaliente --> split(y){25 : alaDerSalienteVentanas | ~1 : nil}
+alaDerSalienteVentanas --> split(z){0.8 : I(rect) | ~1 : repeatN(y, 30){I(window3)} | 0.3 : I(rect) | ~1 : repeatN(y, 30){I(window3)} | 0.3 : I(rect) | ~1 : repeatN(y, 30){I(window3)} | 0.3 : I(rect) | ~1 : repeatN(y, 30){I(window3)} | 0.8 : I(rect)}
+alaDerPosterior --> split(y){28 : I(rect) | ~1 : nil}
+alaDerDer --> split(y){20 : alaDerDerVentanas | ~1 : nil}
+alaDerDerVentanas --> split(z){1 : I(rect) | ~1 : repeatN(y, 16){I(window3)} | 1 : I(rect)}
+alaDerAtras --> split(x){~1 : alaDerAtrasRotado | 2 : nil}
+alaDerAtrasRotado --> split(z){8 : alaDerAtrasIzq | 4 : alaDerAtrasDer}
+alaDerAtrasIzq --> split(x){~1 : alaDerAtrasPosterior | 2 : alaDerAtrasSaliente}
+alaDerAtrasSaliente --> split(y){25 : I(rect) | ~1 : nil}
+alaDerAtrasPosterior --> split(y){28 : I(rect) | ~1 : nil}
+alaDerAtrasDer --> split(y){20 : I(rect) | ~1 : nil}
